@@ -1,0 +1,38 @@
+
+The saaz MCP server is now consumed by two surfaces: directly by humans testing it, and as a proxied upstream by the mneme middleware (which exposes its tools verbatim into Claude.ai sessions and Claude Code Web). The current tool names and descriptions were written for developer callers; they need to be rewritten so an LLM can pick the right tool from a long list without context.
+Do not change behavior. Do not modify the database schema. Do not modify the safety guardrails. This is a metadata-only change.
+Step 1 — Rename the 7 tools by adding a saaz_ prefix
+Current names → new names:
+OldNewlist_tablessaaz_list_tablesdescribe_tablesaaz_describe_tablequerysaaz_queryget_artistsaaz_get_artistlist_artistssaaz_list_artistssearch_artistssaaz_search_artistsstatssaaz_stats
+The prefix makes them self-describing in any tool picker — a user looking at a list of 30 MCP tools across multiple servers can see at a glance which ones go to the Persian-music dataset.
+Step 2 — Rewrite descriptions for LLM callers
+Each tool needs a description that helps an LLM decide when to call it. Use this template:
+
+First sentence: what it returns, in one line.
+Second sentence: when to prefer this tool over the others.
+Third sentence (optional): any non-obvious constraint (read-only, row cap, what genres exist).
+
+Use these as the new descriptions; tighten if needed to fit your model's tool-description length limit:
+
+saaz_list_tables — Returns the names of the 6 saaz tables (artist, artist_link, artist_image, song, enrichment_run, data_provenance). Use this first if you need to know what tables exist before writing a SQL query. The schema is stable; you usually only need to call this once per session.
+saaz_describe_table — Returns the column names, types, and constraints for one saaz table. Use this before writing a non-trivial saaz_query so you don't guess column names. Only the 6 saaz tables are reachable; describing any other table will return an error.
+saaz_query — Runs a single read-only SELECT or WITH … SELECT against the saaz database and returns up to 1000 rows. Use this for ad-hoc analytics, joins, aggregations, or anything not covered by the more specific saaz tools. Multi-statement, writes, and DDL are rejected; the statement timeout is 10 seconds. Prefer saaz_get_artist for "tell me about artist X" and saaz_search_artists for fuzzy/semantic lookups.
+saaz_get_artist — Returns one artist (by slug or ID) with all their links, images, and per-fact data provenance joined in. Use this when the user names a specific artist and you want the complete record. Returns null if no match.
+saaz_list_artists — Returns artists filtered by genre, status, or era. Use this when the user specifies a known genre tag (persian_jazz, indie_persian_jazz, traditional, other) or status (active, upcoming, legacy, deceased). For fuzzy queries like "experimental music by women" use saaz_search_artists instead.
+saaz_search_artists — Semantic search over artist bios using pgvector embeddings. Use this when the user describes what they want in natural language ("dark electronic music with Persian roots", "traditional vocalists from the 1970s") rather than naming a specific artist or genre tag. Returns artists ranked by semantic similarity.
+saaz_stats — Returns dataset health metrics: row counts, genre breakdown, embedding coverage, total enrichment spend, last refresh timestamp. Use this when the user asks "what's in this dataset?" or when you're debugging an unexpected empty result and want to know if data exists.
+
+Step 3 — Verify and report
+
+Run the FastMCP server locally (uv run python -m scripts.mcp_server).
+Hit it with the handshake from docs/UPSTREAM.md and call tools/list. Confirm all 7 names are prefixed and descriptions match.
+Call saaz_stats and confirm it returns the same dataset as before.
+Run any existing tests (make test if present).
+Republish the Autoscale deployment. Verify https://saaz-aloomrani.replit.app/mcp returns the new names.
+
+Hard rules
+
+Behavior is unchanged. Only tool.name and tool.description change.
+No schema changes. No safety-guardrail changes. No new dependencies.
+The 7-tool surface stays at 7. Don't add, don't remove.
+After republishing, tell me the new tools/list response so I can confirm mneme sees the rename.

@@ -103,9 +103,17 @@ def _jsonable(obj: Any) -> Any:
 # ---------------------------------------------------------------------------
 
 
-@mcp.tool()
-def list_tables() -> list[dict]:
-    """List the saaz tables in this database (read-only)."""
+@mcp.tool(
+    name="saaz_list_tables",
+    description=(
+        "Returns the names of the 6 saaz tables (artist, artist_link, artist_image, "
+        "song, enrichment_run, data_provenance). Use this first if you need to know "
+        "what tables exist before writing a SQL query. The schema is stable; you "
+        "usually only need to call this once per session."
+    ),
+)
+def saaz_list_tables() -> list[dict]:
+    """Returns the names of the 6 saaz tables."""
     with _conn() as c, c.cursor() as cur:
         cur.execute(
             """SELECT table_name,
@@ -119,8 +127,16 @@ def list_tables() -> list[dict]:
         return _jsonable(cur.fetchall())
 
 
-@mcp.tool()
-def describe_table(table: str) -> dict:
+@mcp.tool(
+    name="saaz_describe_table",
+    description=(
+        "Returns the column names, types, and constraints for one saaz table. Use "
+        "this before writing a non-trivial saaz_query so you don't guess column "
+        "names. Only the 6 saaz tables are reachable; describing any other table "
+        "will return an error."
+    ),
+)
+def saaz_describe_table(table: str) -> dict:
     """Describe columns of a saaz table.
 
     Args:
@@ -147,8 +163,18 @@ def describe_table(table: str) -> dict:
         return _jsonable({"table": table, "exists": exists, "columns": cols})
 
 
-@mcp.tool()
-def query(sql: str, limit: int = 200) -> dict:
+@mcp.tool(
+    name="saaz_query",
+    description=(
+        "Runs a single read-only SELECT or WITH \u2026 SELECT against the saaz "
+        "database and returns up to 1000 rows. Use this for ad-hoc analytics, "
+        "joins, aggregations, or anything not covered by the more specific saaz "
+        "tools. Multi-statement, writes, and DDL are rejected; the statement "
+        "timeout is 10 seconds. Prefer saaz_get_artist for \"tell me about artist "
+        "X\" and saaz_search_artists for fuzzy/semantic lookups."
+    ),
+)
+def saaz_query(sql: str, limit: int = 200) -> dict:
     """Run a single read-only SELECT statement against the saaz database.
 
     Args:
@@ -170,8 +196,16 @@ def query(sql: str, limit: int = 200) -> dict:
         })
 
 
-@mcp.tool()
-def get_artist(slug: str) -> dict:
+@mcp.tool(
+    name="saaz_get_artist",
+    description=(
+        "Returns one artist (by slug or ID) with all their links, images, and "
+        "per-fact data provenance joined in. Use this when the user names a "
+        "specific artist and you want the complete record. Returns null if no "
+        "match."
+    ),
+)
+def saaz_get_artist(slug: str) -> dict:
     """Fetch one artist by slug with links, images, and provenance."""
     with _conn() as c, c.cursor() as cur:
         cur.execute(
@@ -207,8 +241,17 @@ def get_artist(slug: str) -> dict:
         return _jsonable(artist)
 
 
-@mcp.tool()
-def list_artists(
+@mcp.tool(
+    name="saaz_list_artists",
+    description=(
+        "Returns artists filtered by genre, status, or era. Use this when the "
+        "user specifies a known genre tag (persian_jazz, indie_persian_jazz, "
+        "traditional, other) or status (active, upcoming, legacy, deceased). For "
+        "fuzzy queries like \"experimental music by women\" use "
+        "saaz_search_artists instead."
+    ),
+)
+def saaz_list_artists(
     genre: str | None = None,
     status: str | None = None,
     limit: int = 50,
@@ -240,8 +283,17 @@ def list_artists(
         return _jsonable(cur.fetchall())
 
 
-@mcp.tool()
-def search_artists(query: str, limit: int = 10) -> list[dict]:
+@mcp.tool(
+    name="saaz_search_artists",
+    description=(
+        "Semantic search over artist bios using pgvector embeddings. Use this "
+        "when the user describes what they want in natural language (\"dark "
+        "electronic music with Persian roots\", \"traditional vocalists from the "
+        "1970s\") rather than naming a specific artist or genre tag. Returns "
+        "artists ranked by semantic similarity."
+    ),
+)
+def saaz_search_artists(query: str, limit: int = 10) -> list[dict]:
     """Semantic search across artist bios using pgvector + OpenAI embeddings.
 
     Requires OPENAI_API_KEY to embed the query at call time.
@@ -275,8 +327,16 @@ def search_artists(query: str, limit: int = 10) -> list[dict]:
         return _jsonable(cur.fetchall())
 
 
-@mcp.tool()
-def stats() -> dict:
+@mcp.tool(
+    name="saaz_stats",
+    description=(
+        "Returns dataset health metrics: row counts, genre breakdown, embedding "
+        "coverage, total enrichment spend, last refresh timestamp. Use this when "
+        "the user asks \"what's in this dataset?\" or when you're debugging an "
+        "unexpected empty result and want to know if data exists."
+    ),
+)
+def saaz_stats() -> dict:
     """Row counts and high-level health stats for the saaz dataset."""
     out: dict[str, Any] = {}
     with _conn() as c, c.cursor() as cur:
