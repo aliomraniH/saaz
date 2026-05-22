@@ -8,5 +8,33 @@ channel = "stable-25_05"
 packages = ["libxcrypt", "postgresql"]
 
 [deployment]
-deploymentTarget = "scheduled"
-run = ["make", "refresh"]
+deploymentTarget = "autoscale"
+run = ["uv", "run", "python", "-m", "scripts.mcp_server"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "MCP Server"
+
+[[workflows.workflow]]
+name = "MCP Server"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "uv run python -m scripts.mcp_server"
+waitForPort = 5000
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[ports]]
+localPort = 5000
+externalPort = 80
