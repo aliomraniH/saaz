@@ -1,0 +1,442 @@
+{
+  "_meta": {
+    "license": "CC0 — facts assembled from public Wikipedia and label pages",
+    "intent": "Demo seed for the mneme middleware project. Not authoritative.",
+    "last_curated": "2026-05-21",
+    "instructions": "Add or remove artists freely. The enricher will refill bio/links/images for any row where bio_source = 'seed' or is null."
+  },
+  "artists": [
+    {
+      "slug": "kayhan-kalhor",
+      "name_en": "Kayhan Kalhor",
+      "name_fa": "کیهان کلهر",
+      "name_translit": "Keyhan Kalhor",
+      "genre": "traditional",
+      "sub_genres": ["fusion", "cross_cultural"],
+      "era": "contemporary",
+      "status": "legacy",
+      "country": "IR",
+      "born": "1963-11-24",
+      "bio_seed": "Kurdish-Iranian kamancheh virtuoso, composer, and co-founder of Masters of Persian Music and the Silk Road Ensemble.",
+      "links": [
+        {"kind": "wikipedia", "url": "https://en.wikipedia.org/wiki/Kayhan_Kalhor"}
+      ]
+    },
+    {
+      "slug": "mohammad-reza-shajarian",
+      "name_en": "Mohammad-Reza Shajarian",
+      "name_fa": "محمدرضا شجریان",
+      "genre": "traditional",
+      "era": "20th_century",
+      "status": "deceased",
+      "country": "IR",
+      "born": "1940-09-23",
+      "died": "2020-10-08",
+      "bio_seed": "Iranian classical vocalist widely regarded as the greatest maestro of Persian traditional singing, and the central voice of the Masters of Persian Music ensemble.",
+      "links": [
+        {"kind": "wikipedia", "url": "https://en.wikipedia.org/wiki/Mohammad-Reza_Shajarian"}
+      ]
+    },
+    {
+      "slug": "hossein-alizadeh",
+      "name_en": "Hossein Alizadeh",
+      "name_fa": "حسین علیزاده",
+      "genre": "traditional",
+      "sub_genres": ["contemporary_classical"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "based_in": "Tehran, Iran",
+      "born": "1951-08-24",
+      "bio_seed": "Tar and setar virtuoso, composer, and radif researcher; a central figure in contemporary Persian classical music and Masters of Persian Music.",
+      "links": [
+        {"kind": "wikipedia", "url": "https://en.wikipedia.org/wiki/Hossein_Alizadeh"}
+      ]
+    },
+    {
+      "slug": "homayoun-shajarian",
+      "name_en": "Homayoun Shajarian",
+      "name_fa": "همایون شجریان",
+      "genre": "traditional",
+      "sub_genres": ["contemporary"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "bio_seed": "Vocalist and tombak player, son of Mohammad-Reza Shajarian, known both for classical work and contemporary collaborations.",
+      "links": [
+        {"kind": "wikipedia", "url": "https://en.wikipedia.org/wiki/Homayoun_Shajarian"}
+      ]
+    },
+    {
+      "slug": "shahram-nazeri",
+      "name_en": "Shahram Nazeri",
+      "name_fa": "شهرام ناظری",
+      "genre": "traditional",
+      "sub_genres": ["sufi", "kurdish"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "bio_seed": "Kurdish-Iranian tenor known for Sufi and Rumi-inspired vocal works; one of the most prominent voices in contemporary Persian classical music.",
+      "links": [
+        {"kind": "wikipedia", "url": "https://en.wikipedia.org/wiki/Shahram_Nazeri"}
+      ]
+    },
+    {
+      "slug": "alireza-ghorbani",
+      "name_en": "Alireza Ghorbani",
+      "name_fa": "علیرضا قربانی",
+      "genre": "traditional",
+      "sub_genres": ["contemporary"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "bio_seed": "Iranian classical vocalist active since the early 2000s, known for film scores and collaborations bridging traditional and contemporary music.",
+      "links": [
+        {"kind": "wikipedia", "url": "https://en.wikipedia.org/wiki/Alireza_Ghorbani"}
+      ]
+    },
+    {
+      "slug": "parisa-arsalani",
+      "name_en": "Parisa",
+      "name_fa": "پریسا",
+      "name_translit": "Fatemeh Vaezi",
+      "genre": "traditional",
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "bio_seed": "Iranian classical singer, one of the leading female vocalists in Persian traditional music in the 20th and 21st centuries.",
+      "links": [
+        {"kind": "wikipedia", "url": "https://en.wikipedia.org/wiki/Parisa_(singer)"}
+      ]
+    },
+    {
+      "slug": "sussan-deyhim",
+      "name_en": "Sussan Deyhim",
+      "name_fa": "سوسن دیهیم",
+      "genre": "traditional",
+      "sub_genres": ["experimental", "electroacoustic"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "based_in": "New York, USA",
+      "bio_seed": "Iranian-American vocalist and composer working at the intersection of Persian classical traditions and experimental electronic music.",
+      "links": [
+        {"kind": "wikipedia", "url": "https://en.wikipedia.org/wiki/Sussan_Deyhim"}
+      ]
+    },
+
+    {
+      "slug": "rana-farhan",
+      "name_en": "Rana Farhan",
+      "name_fa": "رعنا فرحان",
+      "genre": "persian_jazz",
+      "sub_genres": ["jazz", "blues"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "based_in": "New York, USA",
+      "bio_seed": "Iranian jazz and blues singer based in New York since 1989; her album 'I Return' set the template for combining Rumi and classical Persian poetry with jazz fusion.",
+      "links": [
+        {"kind": "wikipedia", "url": "https://en.wikipedia.org/wiki/Rana_Farhan"},
+        {"kind": "official_site", "url": "https://www.ranafarhanmusic.com"}
+      ]
+    },
+    {
+      "slug": "quartet-diminished",
+      "name_en": "Quartet Diminished",
+      "name_fa": "کوارتت دیمینیشد",
+      "genre": "persian_jazz",
+      "sub_genres": ["improvised", "fusion"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "based_in": "Tehran, Iran",
+      "bio_seed": "Tehran-based jazz quartet on Hermes Records spanning Persian folk to free improvisation; one of the flagship contemporary Iranian jazz acts.",
+      "links": [
+        {"kind": "wikipedia", "url": "https://en.wikipedia.org/wiki/Quartet_Diminished"}
+      ]
+    },
+    {
+      "slug": "peyman-yazdanian",
+      "name_en": "Peyman Yazdanian",
+      "name_fa": "پیمان یزدانیان",
+      "genre": "persian_jazz",
+      "sub_genres": ["film_score", "contemporary"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "bio_seed": "Iranian pianist and film composer on Hermes Records, known for scores collaborating with directors including Abbas Kiarostami.",
+      "links": [
+        {"kind": "wikipedia", "url": "https://en.wikipedia.org/wiki/Peyman_Yazdanian"}
+      ]
+    },
+    {
+      "slug": "shabnam-parvaresh",
+      "name_en": "Shabnam Parvaresh",
+      "name_fa": "شبنم پرورش",
+      "genre": "persian_jazz",
+      "sub_genres": ["avant_garde_jazz", "improvised"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "based_in": "Osnabrück, Germany",
+      "bio_seed": "Iranian-German clarinettist and composer working in avant-garde jazz and improvised music; from 2026 the artistic director of the Morgenland Festival Osnabrück.",
+      "links": [
+        {"kind": "wikipedia", "url": "https://en.wikipedia.org/wiki/Shabnam_Parvaresh"}
+      ]
+    },
+    {
+      "slug": "ardalan-pirhayati",
+      "name_en": "Ardalan",
+      "name_fa": "اردلان",
+      "genre": "persian_jazz",
+      "sub_genres": ["piano_jazz"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "born": "1976-01-01",
+      "bio_seed": "Iranian pianist working in contemporary Persian jazz piano traditions, often blending classical training with improvisation.",
+      "links": []
+    },
+    {
+      "slug": "hafez-modirzadeh",
+      "name_en": "Hafez Modirzadeh",
+      "genre": "persian_jazz",
+      "sub_genres": ["post_bop", "microtonal"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "US",
+      "based_in": "San Francisco, USA",
+      "born": "1962-05-03",
+      "bio_seed": "Iranian-American saxophonist and composer exploring microtonal cross-cultural jazz drawing on Persian dastgah traditions.",
+      "links": [
+        {"kind": "wikipedia", "url": "https://en.wikipedia.org/wiki/Hafez_Modirzadeh"}
+      ]
+    },
+    {
+      "slug": "tara-tiba",
+      "name_en": "Tara Tiba",
+      "genre": "persian_jazz",
+      "sub_genres": ["world_jazz"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "based_in": "Perth, Australia",
+      "bio_seed": "Iranian-Australian vocalist who moved to Australia in 2012, blending Persian classical improvisation with jazz ensembles.",
+      "links": [
+        {"kind": "official_site", "url": "https://taratiba.com"}
+      ]
+    },
+
+    {
+      "slug": "9t-antiope",
+      "name_en": "9T Antiope",
+      "genre": "indie_persian_jazz",
+      "sub_genres": ["experimental", "electronic", "art_pop"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "based_in": "Paris, France",
+      "bio_seed": "Duo of Nima Aghiani and Sara Bigdeli Shamloo, formed in Paris in 2014 after migrating from Tehran; experimental electronic-acoustic music with vocals in English and Persian.",
+      "links": []
+    },
+    {
+      "slug": "kiosk-band",
+      "name_en": "Kiosk",
+      "name_fa": "کیوسک",
+      "genre": "indie_persian_jazz",
+      "sub_genres": ["alternative_rock", "blues_rock", "folk_rock"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "based_in": "USA / Canada",
+      "bio_seed": "Pioneering Iranian alternative rock band founded in Tehran in 2003 by Arash Sobhani; members later emigrated to North America. Wry lyrics confronting Iranian cultural angst.",
+      "links": [
+        {"kind": "wikipedia", "url": "https://en.wikipedia.org/wiki/Kiosk_(band)"},
+        {"kind": "official_site", "url": "https://kiosktheband.com"}
+      ]
+    },
+    {
+      "slug": "arash-sobhani",
+      "name_en": "Arash Sobhani",
+      "name_fa": "آرش سبحانی",
+      "genre": "indie_persian_jazz",
+      "sub_genres": ["rock", "alternative_rock"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "born": "1971-01-03",
+      "bio_seed": "Iranian musician and television host, lead singer of Kiosk and host of OnTen on VOA Persian.",
+      "links": [
+        {"kind": "wikipedia", "url": "https://en.wikipedia.org/wiki/Arash_Sobhani"}
+      ]
+    },
+    {
+      "slug": "take-it-easy-hospital",
+      "name_en": "Take It Easy Hospital",
+      "genre": "indie_persian_jazz",
+      "sub_genres": ["indie_rock", "alternative"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "based_in": "London, UK",
+      "bio_seed": "Indie band fronted by Negar Shaghaghi and Ashkan Koshanejad, featured in Bahman Ghobadi's film No One Knows About Persian Cats; later relocated to London.",
+      "links": []
+    },
+    {
+      "slug": "bomrani",
+      "name_en": "Bomrani",
+      "name_fa": "بمرانی",
+      "genre": "indie_persian_jazz",
+      "sub_genres": ["country_blues", "folk"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "based_in": "Tehran, Iran",
+      "bio_seed": "One of the first country-blues bands in post-revolutionary Iran, founded in Tehran in 2008.",
+      "links": []
+    },
+    {
+      "slug": "pallett",
+      "name_en": "Pallett",
+      "name_fa": "پالت",
+      "genre": "indie_persian_jazz",
+      "sub_genres": ["chamber_pop", "indie_folk"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "based_in": "Tehran, Iran",
+      "bio_seed": "Tehran-based indie folk and chamber-pop band, known for theatrical arrangements and prominent Persian lyrics.",
+      "links": [
+        {"kind": "wikipedia", "url": "https://en.wikipedia.org/wiki/Pallett"}
+      ]
+    },
+    {
+      "slug": "mohsen-namjoo",
+      "name_en": "Mohsen Namjoo",
+      "name_fa": "محسن نامجو",
+      "genre": "indie_persian_jazz",
+      "sub_genres": ["blues", "experimental", "folk"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "based_in": "USA",
+      "bio_seed": "Iranian songwriter, vocalist, and setar player; called by some 'the Bob Dylan of Iran', blending Persian classical singing with blues, rock and protest poetry.",
+      "links": [
+        {"kind": "wikipedia", "url": "https://en.wikipedia.org/wiki/Mohsen_Namjoo"}
+      ]
+    },
+    {
+      "slug": "kaveh-yaghmaei",
+      "name_en": "Kaveh Yaghmaei",
+      "name_fa": "کاوه یغمایی",
+      "genre": "indie_persian_jazz",
+      "sub_genres": ["alternative_rock", "pop_rock"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "bio_seed": "Iranian singer and guitarist active in alternative rock and pop-rock, son of pioneering 1970s singer Ahmad Yaghmaei.",
+      "links": [
+        {"kind": "wikipedia", "url": "https://en.wikipedia.org/wiki/Kaveh_Yaghmaei"}
+      ]
+    },
+    {
+      "slug": "ali-azimi",
+      "name_en": "Ali Azimi",
+      "name_fa": "علی عظیمی",
+      "genre": "indie_persian_jazz",
+      "sub_genres": ["alternative_rock", "indie"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "based_in": "London, UK",
+      "bio_seed": "Iranian singer-songwriter formerly of the band Radio Tehran; solo career in alternative rock, based in London.",
+      "links": [
+        {"kind": "wikipedia", "url": "https://en.wikipedia.org/wiki/Ali_Azimi"}
+      ]
+    },
+    {
+      "slug": "king-raam",
+      "name_en": "King Raam",
+      "name_translit": "Raam Emami",
+      "genre": "indie_persian_jazz",
+      "sub_genres": ["alternative", "indie"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "based_in": "Vancouver, Canada",
+      "bio_seed": "Iranian-Canadian singer-songwriter and broadcaster, known for English and Persian alternative songs and the Masty O Rasty podcast.",
+      "links": []
+    },
+    {
+      "slug": "sevdaliza",
+      "name_en": "Sevdaliza",
+      "name_translit": "Sevda Alizadeh",
+      "genre": "indie_persian_jazz",
+      "sub_genres": ["alternative_rnb", "trip_hop", "art_pop"],
+      "era": "emerging",
+      "status": "active",
+      "country": "IR",
+      "based_in": "Rotterdam, Netherlands",
+      "born": "1987-01-01",
+      "bio_seed": "Iranian-Dutch singer, songwriter, and producer working in alternative R&B, trip-hop and art-pop, often weaving Persian themes into a global sound.",
+      "links": [
+        {"kind": "wikipedia", "url": "https://en.wikipedia.org/wiki/Sevdaliza"}
+      ]
+    },
+
+    {
+      "slug": "siavash-amini",
+      "name_en": "Siavash Amini",
+      "genre": "indie_persian_jazz",
+      "sub_genres": ["ambient", "electroacoustic"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "based_in": "Tehran, Iran",
+      "bio_seed": "Tehran-based electronic and ambient composer, part of the SET Festival circle and a regular on European experimental labels.",
+      "links": []
+    },
+    {
+      "slug": "sote",
+      "name_en": "Sote",
+      "name_translit": "Ata Ebtekar",
+      "genre": "indie_persian_jazz",
+      "sub_genres": ["electronic", "experimental"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "based_in": "Tehran, Iran",
+      "bio_seed": "Iranian electronic music composer (real name Ata Ebtekar), prolific releases on Warp, Sub Rosa and Opal Tapes; co-founder of the SET Festival in Tehran.",
+      "links": [
+        {"kind": "wikipedia", "url": "https://en.wikipedia.org/wiki/Sote"}
+      ]
+    },
+    {
+      "slug": "saba-alizadeh",
+      "name_en": "Saba Alizadeh",
+      "name_fa": "صبا علیزاده",
+      "genre": "persian_jazz",
+      "sub_genres": ["electroacoustic", "experimental"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "based_in": "Tehran, Iran",
+      "bio_seed": "Kamancheh player and electroacoustic composer; son of Hossein Alizadeh, working at the intersection of Persian classical and contemporary experimental music.",
+      "links": []
+    },
+    {
+      "slug": "ramin-sadighi",
+      "name_en": "Ramin Sadighi",
+      "name_fa": "رامین صدیقی",
+      "genre": "other",
+      "sub_genres": ["label_founder", "producer"],
+      "era": "contemporary",
+      "status": "active",
+      "country": "IR",
+      "based_in": "Tehran, Iran",
+      "bio_seed": "Founder/CEO of Hermes Records (1999), Tehran's main independent label for contemporary, jazz, and experimental Persian music; organiser of International Jazz Day in Iran since 2015.",
+      "links": []
+    }
+  ]
+}
