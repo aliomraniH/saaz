@@ -34,6 +34,10 @@ make verify            # sanity-check the resulting DB
 
 The total runtime is ~5 minutes for the default 30 artists and costs ~$0.30 in API calls.
 
+## Cohabitation with `mneme`
+
+`saaz` and [`mneme`](https://github.com/YOU/mneme) share one Replit Helium Postgres instance. `saaz` owns the `artist`, `artist_link`, `artist_image`, `song`, `enrichment_run`, and `data_provenance` tables. `mneme` owns its own memory tables (`query_episode`, `expertise_note`, etc.). They coexist in the `public` schema without colliding. The saaz scripts only touch saaz tables; never run `DROP` or `TRUNCATE` against tables you don't recognize.
+
 ## Schema (at a glance)
 
 ```

@@ -23,6 +23,9 @@ verify:
 refresh:
 	python -m scripts.refresh
 
+check-mneme:
+	python -m scripts.check_mneme
+
 # One-shot bootstrap
 all: migrate seed enrich embed verify
 
