@@ -1,0 +1,61 @@
+You are making a small change to scripts/mcp_server.py to prefix the 4 generic
+tool names with "saaz_" so that the mneme middleware can route them to the
+correct audit namespace (saaz_demo) instead of "default".
+
+The 3 domain-specific tools (get_artist, list_artists, search_artists) already
+contain "artist" in their names so mneme routes them correctly — do NOT rename
+those.
+Change required in scripts/mcp_server.py
+
+Rename these 4 tool functions:
+list_tables → saaz_list_tables
+describe_table → saaz_describe_table
+query → saaz_query
+stats → saaz_stats
+
+Keep the function bodies identical. Only the function name changes (which is
+also the MCP tool name since FastMCP uses name).
+How to rename in FastMCP
+
+Simply rename the Python function. FastMCP registers the tool under the
+function's name:
+
+BEFORE:
+@mcp.tool()
+def list_tables() -> list[dict]:
+...
+
+AFTER:
+@mcp.tool()
+def saaz_list_tables() -> list[dict]:
+...
+
+Do this for all 4 generic tools. Leave get_artist, list_artists, and
+search_artists unchanged.
+After the change
+
+    Run the server locally and verify it starts:
+    uv run python -m scripts.mcp_server
+    Confirm the tool names in the output / via a quick MCP list_tools call.
+    Commit and push:
+    git add scripts/mcp_server.py
+    git commit -m "feat: prefix generic MCP tools with saaz_ for mneme routing"
+    git push origin main
+    Replit will auto-deploy. Once running, verify the tool list at:
+    https://saaz-aloomrani.replit.app/mcp
+
+Why this matters
+
+mneme (the middleware layer at https://github.com/aliomraniH/mneme) routes
+every tool call to an audit namespace using keyword matching on the tool name.
+Without the saaz_ prefix, calls to list_tables / query / stats get logged
+under "default" instead of "saaz_demo", making the audit history harder to
+query by database. The routing keywords for saaz_demo include "saaz_" which
+will match all renamed tools.
+IMPORTANT: do NOT change
+
+    get_artist, list_artists, search_artists — already route correctly
+    The DATABASE_URL connection logic
+    The pgvector / OpenAI embedding logic in search_artists
+    The APScheduler weekly refresh job
+    Any migration or seed scripts

@@ -170,8 +170,8 @@ def saaz_describe_table(table: str) -> dict:
         "database and returns up to 1000 rows. Use this for ad-hoc analytics, "
         "joins, aggregations, or anything not covered by the more specific saaz "
         "tools. Multi-statement, writes, and DDL are rejected; the statement "
-        "timeout is 10 seconds. Prefer saaz_get_artist for \"tell me about artist "
-        "X\" and saaz_search_artists for fuzzy/semantic lookups."
+        "timeout is 10 seconds. Prefer get_artist for \"tell me about artist "
+        "X\" and search_artists for fuzzy/semantic lookups."
     ),
 )
 def saaz_query(sql: str, limit: int = 200) -> dict:
@@ -197,7 +197,7 @@ def saaz_query(sql: str, limit: int = 200) -> dict:
 
 
 @mcp.tool(
-    name="saaz_get_artist",
+    name="get_artist",
     description=(
         "Returns one artist (by slug or ID) with all their links, images, and "
         "per-fact data provenance joined in. Use this when the user names a "
@@ -205,7 +205,7 @@ def saaz_query(sql: str, limit: int = 200) -> dict:
         "match."
     ),
 )
-def saaz_get_artist(slug: str) -> dict:
+def get_artist(slug: str) -> dict:
     """Fetch one artist by slug with links, images, and provenance."""
     with _conn() as c, c.cursor() as cur:
         cur.execute(
@@ -242,16 +242,16 @@ def saaz_get_artist(slug: str) -> dict:
 
 
 @mcp.tool(
-    name="saaz_list_artists",
+    name="list_artists",
     description=(
         "Returns artists filtered by genre, status, or era. Use this when the "
         "user specifies a known genre tag (persian_jazz, indie_persian_jazz, "
         "traditional, other) or status (active, upcoming, legacy, deceased). For "
         "fuzzy queries like \"experimental music by women\" use "
-        "saaz_search_artists instead."
+        "search_artists instead."
     ),
 )
-def saaz_list_artists(
+def list_artists(
     genre: str | None = None,
     status: str | None = None,
     limit: int = 50,
@@ -284,7 +284,7 @@ def saaz_list_artists(
 
 
 @mcp.tool(
-    name="saaz_search_artists",
+    name="search_artists",
     description=(
         "Semantic search over artist bios using pgvector embeddings. Use this "
         "when the user describes what they want in natural language (\"dark "
@@ -293,7 +293,7 @@ def saaz_list_artists(
         "artists ranked by semantic similarity."
     ),
 )
-def saaz_search_artists(query: str, limit: int = 10) -> list[dict]:
+def search_artists(query: str, limit: int = 10) -> list[dict]:
     """Semantic search across artist bios using pgvector + OpenAI embeddings.
 
     Requires OPENAI_API_KEY to embed the query at call time.
